@@ -19,9 +19,9 @@ Text generation models have taken the world by storm with their myriad of potent
 - **CSS** - Styling that will adapt to different device sizes, provide for a non-distracting user interface, include appropriate whitespace, demonstrate suitable coloring, and allow overall ease of use.
 - **JavaScript** - Provides login and much of the chat functionality. Contributes to dynamic chat display, calls to backend endpoints for chat responses, allows image upload, etc.
 - **Service** - Backend service with endpoints for:
-  - Login
-  - Llm-powered chat responses
-  - Analysis of images
-- **Database/Login** - Store users, user input, and chat history in database. Create new users and store credentials. Application cannot be accessed without authentication.
-- **WebSocket** - As active users interact with the chat functionality, broadcast number of users and maintain list of most popular questions in realtime.
+  - login
+  - llm-powered chat responses
+  - analysis of images
+- **Database/Login** - Create new users and store credentials. Application cannot be accessed without authentication. Additionally, store user information, input, and chat history in database
+- **WebSocket** - As active users interact with the chat functionality, broadcast number of active users and list trending questions in realtime.
 - **React** - Application designed to use React framework
