@@ -22,6 +22,6 @@ Text generation models have taken the world by storm with their myriad of potent
   - login
   - llm-powered chat responses
   - analysis of images
-- **Database/Login** - Create new users and store credentials. Application cannot be accessed without authentication. Additionally, store user information, input, and chat history in database
-- **WebSocket** - As active users interact with the chat functionality, broadcast number of active users and list trending questions in realtime.
+- **Database/Login** - Create new users and store credentials. Application cannot be accessed without authentication. Additionally, store user information, top questions, and chat history in database. Trending questions page displays user questions stored in the database
+- **WebSocket** - As active users interact with the chat functionality, broadcast the number of active users and their usernames in realtime.
 - **React** - Application designed to use React framework
