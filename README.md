@@ -5,3 +5,23 @@ Text generation models have taken the world by storm with their myriad of potent
 
 ## Design
 ![alt text](https://github.com/JoshuaEbbert/Test-Prep-StrateGPT/blob/b3b35e3d26846bb9c97475b7704dd5a439d635c6/Design.jpg?raw=true)
+
+## Key Features
+- Secure login over HTTPS
+- Realtime chat with text generation models
+- Ability to upload images within the conversation
+- Access to models primed for conversation regarding college readiness exams
+- Trending questions from all users displayed in realtime
+- Top and/or currently active users displayed
+
+## Technologies
+- **HTML** - HTML backbone of site provides structure for application and navigation. Three pages that can be visited including login, chat, and trending
+- **CSS** - Styling that will adapt to different device sizes, provide for a non-distracting user interface, include appropriate whitespace, demonstrate suitable coloring, and allow overall ease of use.
+- **JavaScript** - Provides login and much of the chat functionality. Contributes to dynamic chat display, calls to backend endpoints for chat responses, allows image upload, etc.
+- **Service** - Backend service with endpoints for:
+  - Login
+  - Llm-powered chat responses
+  - Analysis of images
+- **Database/Login** - Store users, user input, and chat history in database. Create new users and store credentials. Application cannot be accessed without authentication.
+- **WebSocket** - As active users interact with the chat functionality, broadcast number of users and maintain list of most popular questions in realtime.
+- **React** - Application designed to use React framework
