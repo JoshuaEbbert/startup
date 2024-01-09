@@ -1,2 +1,3 @@
-# startup
-CS260 main project
+# Test Prep StrateGPT
+
+## Elevator Pitch
