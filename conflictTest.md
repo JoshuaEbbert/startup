@@ -1,3 +1,3 @@
-Text added from VSCode
+Text changed in VSCode
 
 Text added from Github
