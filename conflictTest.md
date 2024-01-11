@@ -1,3 +1,3 @@
-Text changed in VSCode
+Conflict resolved
 
 Text added from Github
