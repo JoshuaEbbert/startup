@@ -1,8 +1,8 @@
-## Notes
+# Notes
 
-# Git
--Pull
--Push
--Checkout
--Merge
+## Git
+- Pull
+- Push
+- Checkout
+- Merge
 
