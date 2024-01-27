@@ -56,5 +56,15 @@ keystroke	meaning
 - :w	write file (save)
 - :q	quit. Use :q! to exit without saving
 
+## HTML Intro
+- <a href="">inner text</a>
+- <!-- -->
+- &	&amp;
+- <	&lt;
+- >	&gt;
+- "	&quot;
+- '	&apos;
+
+Block vs. inline elements
 
 
