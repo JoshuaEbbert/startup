@@ -57,6 +57,8 @@ keystroke	meaning
 - :q	quit. Use :q! to exit without saving
 
 ## HTML Intro
+### Structure
+```
 - <a href="">inner text</a>
 - <!-- -->
 - &	&amp;
@@ -64,7 +66,100 @@ keystroke	meaning
 - >	&gt;
 - "	&quot;
 - '	&apos;
+```
 
 Block vs. inline elements
 
+### Input
+#### Example of Form Element and Submission
+```
+<form action="submission.html" method="post">
+  <label for="ta">TextArea: </label>
+  <textarea id="ta" name="ta-id">
+Some text
+  </textarea>
+  <button type="submit">Submit</button>
+</form>
+```
+#### Input Element
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>text</td>
+<td>Single line textual value</td>
+</tr>
+<tr>
+<td>password</td>
+<td>Obscured password</td>
+</tr>
+<tr>
+<td>email</td>
+<td>Email address</td>
+</tr>
+<tr>
+<td>tel</td>
+<td>Telephone number</td>
+</tr>
+<tr>
+<td>url</td>
+<td>URL address</td>
+</tr>
+<tr>
+<td>number</td>
+<td>Numerical value</td>
+</tr>
+<tr>
+<td>checkbox</td>
+<td>Inclusive selection</td>
+</tr>
+<tr>
+<td>radio</td>
+<td>Exclusive selection</td>
+</tr>
+<tr>
+<td>range</td>
+<td>Range limited number</td>
+</tr>
+<tr>
+<td>date</td>
+<td>Year, month, day</td>
+</tr>
+<tr>
+<td>datetime-local</td>
+<td>Date and time</td>
+</tr>
+<tr>
+<td>month</td>
+<td>Year, month</td>
+</tr>
+<tr>
+<td>week</td>
+<td>Week of year</td>
+</tr>
+<tr>
+<td>color</td>
+<td>Color</td>
+</tr>
+<tr>
+<td>file</td>
+<td>Local file</td>
+</tr>
+<tr>
+<td>submit</td>
+<td>button to trigger form submission</td>
+</tr>
+</tbody>
+</table>
 
+Example: ```<input type="checkbox" name="varCheckbox" value="checkbox1" checked />```
+
+### Media
+The media tags that reference external media all take a URL as an attribute. The path represented by the URL can either be a relative path or full path. A full path includes the protocol, domain name, and path to the file.
+
+Video, img, and audio media types
