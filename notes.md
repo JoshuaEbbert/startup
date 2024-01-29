@@ -163,3 +163,9 @@ Example: ```<input type="checkbox" name="varCheckbox" value="checkbox1" checked 
 The media tags that reference external media all take a URL as an attribute. The path represented by the URL can either be a relative path or full path. A full path includes the protocol, domain name, and path to the file.
 
 Video, img, and audio media types
+
+## Startup HTML
+
+Deploying files
+```./deployFiles.sh -k ../260-key-pair.pem -h strategpt.click -s simon```
+
