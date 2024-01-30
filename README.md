@@ -25,3 +25,14 @@ Text generation models have taken the world by storm with their myriad of potent
 - **Database/Login** - Create new users and store credentials. Application cannot be accessed without authentication. Additionally, store user information, top questions, and chat history in database. Trending questions page displays user questions stored in the database
 - **WebSocket** - As active users interact with the chat functionality, broadcast the number of active users and their usernames in realtime.
 - **React** - Application designed to use React framework
+
+## HTML Deliverable
+
+For this deliverable, I built out the structure of my application using HTML.
+
+- HTML pages: Four HTML pages accessing the different functionalities of my web application
+- Links: The navigation bar allows the user to move easily from page to page. The login page takes the user automatically to the chat.html page
+- Text: Placeholder text for the various functionalities is found on each page. The main chat function has a partial conversation shown
+- Images: Image placed on the about page
+- DB/Login: Input box and submit option for login (will eventually verify login information against database of users). In addition, indicated where the chat history will be loaded from the database
+- Websocket: Trending page shows realtime use of the StrateGPT web application, including current users and hot topics
