@@ -169,3 +169,71 @@ Video, img, and audio media types
 Deploying files
 ```./deployFiles.sh -k ../260-key-pair.pem -h strategpt.click -s simon```
 
+## CSS
+
+"Functionally, CSS is primarily concerned with defining rulesets, or simply rules. A rule is comprised of a selector that selects the elements to apply the rule to, and one or more declarations that represent the property to style with the given property value"
+
+Three ways to associate CSS with a page
+- style attribute within element
+- style tags within ```<head></head>``` tags
+- link in ```<head></head>``` tags:
+```<link rel="stylesheet" href="styles.css" />```
+
+Formatting by content, padding, border, margin
+
+### Combinators
+
+"Next we want to change the color of the second level headings (h2), but we only want to do that within the sections for each department. To make that happen we can provide a descendant combinator that is defined with a space delimited list of values where each item in the list is a descendant of the previous item. So our selector would be all h2 elements that are descendants of section elements."
+
+section h2 {
+  color: #004400;
+}
+
+<table>
+<thead>
+<tr>
+<th>Combinator</th>
+<th>Meaning</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Descendant</td>
+<td>A list of descendants</td>
+<td><code>body section</code></td>
+<td>Any section that is a descendant of a body</td>
+</tr>
+<tr>
+<td>Child</td>
+<td>A list of direct children</td>
+<td><code>section &gt; p</code></td>
+<td>Any p that is a direct child of a section</td>
+</tr>
+<tr>
+<td>General sibling</td>
+<td>A list of siblings</td>
+<td><code>p ~ div</code></td>
+<td>Any p that has a div sibling</td>
+</tr>
+<tr>
+<td>Adjacent sibling</td>
+<td>A list of adjacent sibling</td>
+<td><code>p + div</code></td>
+<td>Any p that has an adjacent div sibling</td>
+</tr>
+</tbody>
+</table>
+
+Class selectors:
+.class {}
+
+ID selectors: 
+```#id {}```
+
+Attribute selectors:
+p[attribute = 'something'] {}
+
+Pseudo selectors:
+section:hover {}
