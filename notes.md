@@ -237,3 +237,46 @@ p[attribute = 'something'] {}
 
 Pseudo selectors:
 section:hover {}
+
+### CSS Fonts
+
+Importing fonts: 
+From local files
+```@font-face {
+  font-family: 'Quicksand';
+  src: url('https://cs260.click/fonts/quicksand.ttf');
+}
+
+p {
+  font-family: Quicksand;
+}```
+
+From font provider (such as Google)
+```@import url('https://fonts.googleapis.com/css2?family=Rubik Microbe&display=swap');
+
+p {
+  font-family: 'Rubik Microbe';
+}```
+
+### Animation
+
+```
+selector {
+  animation-name: demo;
+  animation-duration: 1s;
+}
+
+@keyframes demo {
+  from {
+    font-size: 0px;
+  }
+
+  95% {
+    font-size: 22px;
+  }
+
+  to {
+    font-size: 20px;
+  }
+}
+```
