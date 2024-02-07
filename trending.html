@@ -2,25 +2,36 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- Tell browsers not to scale the viewport automatically as simon code suggests -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="TestPrep StrateGPT is a chatbot that helps students prepare for exams."/>
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="trending.css" />
+
+    <!-- Include bootstrap framework -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
     <title>TestPrep StrateGPT</title>
   </head>
   <body>
-    <header>
-        <h1>TestPrep StrateGPT<sup>&reg;</sup></h1>
-  
-        <!-- Navigation elements -->
-        <nav>
-          <menu>
-            <li><a href="index.html">Login</a></li>
-            <li><a href="chat.html">Chat</a></li>
-            <li><a href="trending.html">Trending</a></li>
-            <li><a href="about.html">About</a></li>
-          </menu>
-        </nav>
-    </header>
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+        <span class="fs-4">Test Prep StrateGPT<sup>&reg;</sup></span>
+      </a>
 
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a href="index.html" class="nav-link" aria-current="page">Login</a></li>
+        <li class="nav-item"><a href="chat.html" class="nav-link">Chat</a></li>
+        <li class="nav-item"><a href="trending.html" class="nav-link">Trending</a></li>
+        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+    </header>
     <main>
         <h3>Active Users</h3>
         <p>Other users currently using StrateGPT to aid in their test prep</p>
