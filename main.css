@@ -18,6 +18,10 @@ main {
     justify-content: center;
 }
 
+.header-list {
+    padding-right: 25px;
+}
+
 footer {
     flex: 0 50px;
 }
