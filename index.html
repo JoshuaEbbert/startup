@@ -19,40 +19,37 @@
     <title>TestPrep StrateGPT</title>
   </head>
   <body>
-    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none pl-25">
+    <header class="d-flex flex-wrap justify-content-center py-3 border-bottom">
+      <div href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1 pl-25 align-items-center">
+        <img src="iconStrateGPT.svg" alt="Icon StrateGPT" width="45" height="45">
+      </div>
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
         <span class="fs-4">Test Prep StrateGPT<sup>&reg;</sup></span>
       </a>
 
-      <ul class="nav nav-pills">
+      <!-- <ul class="nav nav-pills pr-25">
         <li class="nav-item"><a href="index.html" class="nav-link" aria-current="page">Login</a></li>
         <li class="nav-item"><a href="chat.html" class="nav-link">Chat</a></li>
         <li class="nav-item"><a href="trending.html" class="nav-link">Trending</a></li>
         <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-      </ul>
+      </ul> -->
     </header>
 
     <main>
-        <h1>Welcome</h1>
-        <p>Login</p>
+      <div class="login-box">
+        <h1 class="mb-3">Welcome</h1>
         <form method="get" action="chat.html">
           <label for="username">Username</label>
           <input type="text" id="username" placeholder="Type username here" />
-          <button type="submit">Login</button>
+          <button class="btn btn-primary gap-3" type="submit">Login</button>
         </form>
+      </div>
     </main>
 
 
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top">
       <div class="col-md-4 d-flex align-items-center pl-25">
-        <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-          <img src="iconStrateGPT.svg" alt="Icon StrateGPT" width="24" height="24">
-        </a>
         <span class="mb-3 mb-md-0 text-muted">© 2024 TestPrep StrateGPT</span>
-      </div>
-
-      <div class="align-items-center justify-content-center">
-        <span class="ms-3 text-muted">Username: unknown</span>
       </div>
   
       <ul class="nav col-md-4 justify-content-end list-unstyled d-flex pr-25">

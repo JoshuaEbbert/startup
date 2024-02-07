@@ -1,0 +1,23 @@
+main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    background-image: url('strategpt-login.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: 1px solid #ddd; 
+    border-radius: 15px;
+    padding: 60px;
+    width: 33vw;  
+    height: 25vh;
+}
