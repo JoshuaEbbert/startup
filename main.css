@@ -17,10 +17,10 @@ footer {
     flex: 0 50px;
 }
 
-.left-footer {
+.pl-25 {
     padding-left: 25px;
 }
 
-.right-footer {
+.pr-25 {
     padding-right: 25px;
 }
