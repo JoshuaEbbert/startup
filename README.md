@@ -36,3 +36,14 @@ For this deliverable, I built out the structure of my application using HTML.
 - Images: Image placed on the about page
 - DB/Login: Input box and submit option for login (will eventually verify login information against database of users). In addition, indicated where the chat history will be loaded from the database
 - Websocket: Trending page shows realtime use of the StrateGPT web application, including current users and hot topics
+
+## CSS Deliverable
+
+For this deliverable, I styled my site using CSS and Bootstrap
+
+- Header, footer, and main content body: Used CSS Flex to keep proper sizing relative to one another and filled with proper content such as will be used for the final website
+- Navigation elements: Applied Bootstrap styling for clean header and nav bar
+- Responsive to window resizing: Tested on wide range of window sizes
+- Application elements: Dynamic placement via CSS Flex maintains proper spacing with different viewport sizes. Adding contrast and coloring for ease of use
+- Application text content: Consistent fonts, clean colors, and contrast that all allow for easy reading, appropriate spacing, etc.
+- Application images: Present on about page and as background image for login page
