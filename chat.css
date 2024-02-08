@@ -1,20 +1,32 @@
-.messages {
-    margin-top: 40px;
-    margin-bottom: 20px;
+main {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
 }
 
-.messages-list {
+.messages {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+ul.messages-list {
     list-style-type: none;
+    padding-left: 0px;
+    padding-inline-start: 0px;
 }
 
 ul.messages-list li {
     border-radius: 15px;
     margin-bottom: 20px;
+    margin-left: 0px;
 }
 
 ul.messages-list li span {
     padding: 10px;
     border-radius: 10px;
+    display: inline-block;
+    max-width: 50vw;
+    white-space: normal;
 }
 
 ul.messages-list li.sent span {
@@ -35,4 +47,12 @@ ul.messages-list li.replies span {
 .replies {
     text-align: left;
     padding-left: 25px;
+}
+
+.chat-box {
+    position: absolute;
+    bottom: 90px;
+    
+    left: 50%;
+    transform: translate(-50%, 0%);
 }
