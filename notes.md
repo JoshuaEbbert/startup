@@ -415,3 +415,73 @@ This needs to be included at the end of your ```<body>``` to use JavaScript func
 The way we generally apply bootstrap styling is by using their built-in classes
 
 Here is a good example: https://codepen.io/leesjensen/pen/JjZavjW
+
+## JavaScript
+
+### Console
+console.log()
+
+console.time('demo time')
+// code that takes a while
+console.timeEnd('demo time')
+console.count()
+
+### Including JS
+```<head>
+  <script src="javascript.js"></script>
+</head>
+<body>
+  <button onclick="sayHello()">Say Hello</button>
+  <button onclick="sayGoodbye()">Say Goodbye</button>
+  <script>
+    function sayGoodbye() {
+      alert('Goodbye');
+    }
+  </script>
+</body>```
+
+### JS Features
+
+Supports do while, while, for, for in (indices/keys), for of (values), break, and continue
+
+#### Strings
+```'quoted text'; // " also works
+
+const l = 'literal';
+console.log(`string ${l + (1 + 1)} text`);
+// OUTPUT: string literal2 text```
+
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>length</td>
+<td>The number of characters in the string</td>
+</tr>
+<tr>
+<td>indexOf()</td>
+<td>The starting index of a given substring</td>
+</tr>
+<tr>
+<td>split()</td>
+<td>Split the string into an array on the given delimiter string</td>
+</tr>
+<tr>
+<td>startsWith()</td>
+<td>True if the string has a given prefix</td>
+</tr>
+<tr>
+<td>endsWith()</td>
+<td>True if the string has a given suffix</td>
+</tr>
+<tr>
+<td>toLowerCase()</td>
+<td>Converts all characters to lowercase</td>
+</tr>
+</tbody>
+</table>
