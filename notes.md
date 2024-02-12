@@ -485,3 +485,150 @@ console.log(`string ${l + (1 + 1)} text`);
 </tr>
 </tbody>
 </table>
+
+### Functions
+
+Functions are first-class objects in JS. Ex:
+
+```function hello(who) {
+  return 'hello ' + who;
+}```
+
+They may have side effects. Functions without a return value often exist for that purpose.
+
+Here is an example of a function with a default parameter:
+
+```function labeler(value, title = 'title') {
+  console.log(`${title}=${value}`);
+}```
+
+```// Anonymous function assigned to a parameter
+console.log(
+  doMath(
+    function (a, b) {
+      return a - b;
+    },
+    5,
+    3
+  )
+);```
+
+### Arrow Notation
+
+```() => <return_value>;```
+OR
+```() => {
+  ...code block...
+  return <var>;
+}```
+
+Arrow notation is related to closures. More on this later
+
+### Arrays
+
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>push</td>
+<td>Add an item to the end of the array</td>
+<td><code>a.push(4)</code></td>
+</tr>
+<tr>
+<td>pop</td>
+<td>Remove an item from the end of the array</td>
+<td><code>x = a.pop()</code></td>
+</tr>
+<tr>
+<td>slice</td>
+<td>Return a sub-array</td>
+<td><code>a.slice(1,-1)</code></td>
+</tr>
+<tr>
+<td>sort</td>
+<td>Run a function to sort an array in place</td>
+<td><code>a.sort((a,b) =&gt; b-a)</code></td>
+</tr>
+<tr>
+<td>values</td>
+<td>Creates an iterator for use with a <code>for of</code> loop</td>
+<td><code>for (i of a.values()) {...}</code></td>
+</tr>
+<tr>
+<td>find</td>
+<td>Find the first item satisfied by a test function</td>
+<td><code>a.find(i =&gt; i &lt; 2)</code></td>
+</tr>
+<tr>
+<td>forEach</td>
+<td>Run a function on each array item</td>
+<td><code>a.forEach(console.log)</code></td>
+</tr>
+<tr>
+<td>reduce</td>
+<td>Run a function to reduce each array item to a single item</td>
+<td><code>a.reduce((a, c) =&gt; a + c)</code></td>
+</tr>
+<tr>
+<td>map</td>
+<td>Run a function to map an array to a new array</td>
+<td><code>a.map(i =&gt; i+i)</code></td>
+</tr>
+<tr>
+<td>filter</td>
+<td>Run a function to remove items</td>
+<td><code>a.filter(i =&gt; i%2)</code></td>
+</tr>
+<tr>
+<td>every</td>
+<td>Run a function to test if all items match</td>
+<td><code>a.every(i =&gt; i &lt; 3)</code></td>
+</tr>
+<tr>
+<td>some</td>
+<td>Run a function to test if any items match</td>
+<td><code>a.some(i =&gt; 1 &lt; 1)</code></td>
+</tr>
+</tbody>
+</table>
+
+### JSON
+
+json -> JSON.parse(json) -> javascript -> JSON.stringify(jsObject) -> json -> ...
+
+### JS Objects
+
+Constructor and method call example (outside of a class)
+```function Person(name) {
+  return {
+    name: name,
+    log: function () {
+      console.log('My name is ' + this.name);
+    },
+  };
+}
+
+const p = new Person('Eich');
+p.log();
+// OUTPUT: My name is Eich```
+
+With class
+```class Person {
+  constructor(name) {
+    this.name = name;
+  }
+
+  log() {
+    console.log('My name is ' + this.name);
+  }
+}
+
+const p = new Person('Eich');
+p.log();
+// OUTPUT: My name is Eich```
