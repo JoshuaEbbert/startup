@@ -409,7 +409,8 @@ This needs to be included at the end of your ```<body>``` to use JavaScript func
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
     crossorigin="anonymous"
   ></script>
-</body>```
+</body>
+```
 
 ```npm install bootstrap@5.2.3```
 
@@ -439,7 +440,8 @@ console.count()
       alert('Goodbye');
     }
   </script>
-</body>```
+</body>
+```
 
 ### JS Features
 
@@ -450,7 +452,8 @@ Supports do while, while, for, for in (indices/keys), for of (values), break, an
 
 const l = 'literal';
 console.log(`string ${l + (1 + 1)} text`);
-// OUTPUT: string literal2 text```
+// OUTPUT: string literal2 text
+```
 
 <table>
 <thead>
@@ -493,7 +496,8 @@ Functions are first-class objects in JS. Ex:
 
 ```function hello(who) {
   return 'hello ' + who;
-}```
+}
+```
 
 They may have side effects. Functions without a return value often exist for that purpose.
 
@@ -501,7 +505,8 @@ Here is an example of a function with a default parameter:
 
 ```function labeler(value, title = 'title') {
   console.log(`${title}=${value}`);
-}```
+}
+```
 
 ```// Anonymous function assigned to a parameter
 console.log(
@@ -512,7 +517,8 @@ console.log(
     5,
     3
   )
-);```
+);
+```
 
 ### Arrow Notation
 
@@ -521,7 +527,8 @@ OR
 ```() => {
   ...code block...
   return <var>;
-}```
+}
+```
 
 Arrow notation is related to closures. More on this later
 
@@ -617,7 +624,8 @@ Constructor and method call example (outside of a class)
 
 const p = new Person('Eich');
 p.log();
-// OUTPUT: My name is Eich```
+// OUTPUT: My name is Eich
+```
 
 With class
 ```class Person {
@@ -632,13 +640,15 @@ With class
 
 const p = new Person('Eich');
 p.log();
-// OUTPUT: My name is Eich```
+// OUTPUT: My name is Eich
+```
 
 ### RegEx
 
 Declaration examples:
 ```const objRegex = new RegExp('ab*', 'i');
-const literalRegex = /ab*/i;```
+const literalRegex = /ab*/i;
+```
 
 Useful RegEx functions:
 ```str.match(<regex>)
@@ -653,10 +663,12 @@ str.replace(<regex>, <strToAdd>)
 }
 
 hasNumber(2, 1, 2, 3);
-// returns true```
+// returns true
+```
 
 When placed before parameters in a function call, it is referred to as **spread**
-```fxnThatTakesTwoInts(...[1, 2])```
+```fxnThatTakesTwoInts(...[1, 2])
+```
 
 ## Try Catch Finally
 
@@ -666,4 +678,5 @@ When placed before parameters in a function call, it is referred to as **spread*
   // exception handling code
 } finally {
   // always called code
-}```
+}
+```
