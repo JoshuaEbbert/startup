@@ -397,7 +397,8 @@ To use bootstrap in your code, include it in your ```<head>``` section as follow
       rel="stylesheet"
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
-    />```
+    />
+```
 
 This needs to be included at the end of your ```<body>``` to use JavaScript functionality imported from Bootstrap **OR** you can import a javascript package in your console. See both below
 ```<body>
@@ -632,3 +633,37 @@ With class
 const p = new Person('Eich');
 p.log();
 // OUTPUT: My name is Eich```
+
+### RegEx
+
+Declaration examples:
+```const objRegex = new RegExp('ab*', 'i');
+const literalRegex = /ab*/i;```
+
+Useful RegEx functions:
+```str.match(<regex>)
+str.replace(<regex>, <strToAdd>)
+<regex>.test(<str>)
+```
+
+### Rest Parameters
+
+````function hasNumber(test, ...numbers) {
+  return numbers.some((i) => i === test);
+}
+
+hasNumber(2, 1, 2, 3);
+// returns true```
+
+When placed before parameters in a function call, it is referred to as **spread**
+```fxnThatTakesTwoInts(...[1, 2])```
+
+## Try Catch Finally
+
+```try {
+  // normal execution code
+} catch (err) {
+  // exception handling code
+} finally {
+  // always called code
+}```
