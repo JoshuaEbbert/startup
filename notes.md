@@ -667,7 +667,8 @@ hasNumber(2, 1, 2, 3);
 ```
 
 When placed before parameters in a function call, it is referred to as **spread**
-```fxnThatTakesTwoInts(...[1, 2])
+```
+fxnThatTakesTwoInts(...[1, 2])
 ```
 
 ## Try Catch Finally
@@ -680,3 +681,37 @@ When placed before parameters in a function call, it is referred to as **spread*
   // always called code
 }
 ```
+
+### Destructuring
+```
+const a = [1, 2, 4, 5];
+
+// destructure the first two items from a, into the new variables b and c
+const [b, c, ...others] = a;
+
+console.log(b, c, others);
+// OUTPUT: 1, 2, [4, 5]
+```
+
+```
+const o = { a: 1, b: 'animals', c: ['fish', 'cats'] };
+
+const { a, c } = o;
+
+console.log(a, c);
+// OUTPUT 1, ['fish', 'cats']
+
+const o = { a: 1, b: 'animals', c: ['fish', 'cats'] };
+
+const { a: count, b: type } = o;
+
+console.log(count, type);
+// OUTPUT 1, animals
+
+const { a, b = 22 } = {};
+const [c = 44] = [];
+
+console.log(a, b, c);
+// OUTPUT: undefined, 22, 44
+```
+
