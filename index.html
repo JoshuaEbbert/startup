@@ -17,6 +17,8 @@
       crossorigin="anonymous"
     />
     <title>TestPrep StrateGPT</title>
+
+    <script src="index.js"></script>
   </head>
   <body>
     <header class="d-flex flex-wrap justify-content-center py-3 border-bottom">
@@ -41,7 +43,7 @@
         <form class="login-form" method="get" action="chat.html">
           <label for="username">Username</label>
           <input type="text" id="username" placeholder="Type username here" />
-          <button class="btn btn-primary gap-3" type="submit">Login</button>
+          <button class="btn btn-primary gap-3" onclick="login()">Login</button>
         </form>
       </div>
     </main>

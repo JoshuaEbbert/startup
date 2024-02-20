@@ -658,7 +658,7 @@ str.replace(<regex>, <strToAdd>)
 
 ### Rest Parameters
 
-````function hasNumber(test, ...numbers) {
+```function hasNumber(test, ...numbers) {
   return numbers.some((i) => i === test);
 }
 
@@ -715,3 +715,77 @@ console.log(a, b, c);
 // OUTPUT: undefined, 22, 44
 ```
 
+### Local Storage
+
+```
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>setItem(name, value)</td>
+<td>Sets a named item's value into local storage</td>
+</tr>
+<tr>
+<td>getItem(name)</td>
+<td>Gets a named item's value from local storage</td>
+</tr>
+<tr>
+<td>removeItem(name)</td>
+<td>Removes a named item from local storage</td>
+</tr>
+<tr>
+<td>clear()</td>
+<td>Clears all items in local storage</td>
+</tr>
+</tbody>
+</table>
+```
+
+## Promises
+Code Example
+
+```
+const coinToss = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    if (Math.random() > 0.1) {
+      resolve(Math.random() > 0.5 ? 'heads' : 'tails');
+    } else {
+      reject('fell off table');
+    }
+  }, 10000);
+});
+```
+
+### Then, Catch, Finally
+Code Example 
+
+```
+coinToss
+  .then((result) => console.log(`Coin toss result: ${result}`))
+  .catch((err) => console.log(`Error: ${err}`))
+  .finally(() => console.log('Toss completed'));
+
+// OUTPUT:
+//    Coin toss result: tails
+//    Toss completed
+```
+
+Timeout() takes as parameters a function to execute and a wait (in ms) before it does so
+
+### Await, Async
+
+```
+try {
+  const result = await coinToss();
+  console.log(`Toss result ${result}`);
+} catch (err) {
+  console.error(`Error: ${err}`);
+} finally {
+  console.log(`Toss completed`);
+}
+```
