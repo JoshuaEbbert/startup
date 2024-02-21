@@ -1,6 +1,6 @@
 const playerNameEl = document.querySelector('.username-display');
-playerNameEl.textContent = "User: " + this.getPlayerName();
+playerNameEl.textContent = "User: " + this.getUsername();
 
-function getPlayerName() {
+function getUsername() {
     return localStorage.getItem('username') ?? 'No username provided';
 }
