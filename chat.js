@@ -1,8 +1,10 @@
 const chatDisplay = document.querySelector('.messages-list');
-for (messageDict in getChatHistory()) { // chat history is a list of dictionaries of format {'type': 'replies' or 'sent', 'text': 'message'}
+console.log(getChatHistory());
+for (let messageDict of getChatHistory()) { // chat history is a list of dictionaries of format {'type': 'replies' or 'sent', 'text': 'message'}
     const messageEl = document.createElement('li');
-    messageEl.textContent = messageDict['text'];
+    messageEl.innerHTML = `<span>${messageDict['text']}</span>`;
     messageEl.className = messageDict['type']; // set the class based on the type
+    console.log(messageEl);
     chatDisplay.appendChild(messageEl);
 }
 
@@ -14,3 +16,4 @@ function getChatHistory() {
 function getUsername() {
     return localStorage.getItem('username') ?? 'No username provided';
 }
+
