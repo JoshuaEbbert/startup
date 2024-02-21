@@ -38,5 +38,5 @@ setInterval(() => {
 }, 10000);
 
 function getTrendingQuestions() { // dictionary with counts per question. Placeholder for the database
-    return JSON.parse(localStorage.getItem('trendingQuestions')) ?? {};
+    return JSON.parse(localStorage.getItem('trendingQuestions')) ?? {"No questions currently trending": 0};
 }
