@@ -12,6 +12,10 @@ for (let messageDict of getChatHistory()) { // chat history is a list of diction
     chatDisplay.appendChild(messageEl);
 }
 
+function getTrendingQuestions() { // dictionary with counts per question
+    return JSON.parse(localStorage.getItem('trendingQuestions')) ?? {};
+}
+
 function getChatHistory() {
     const key = getUsername().replace(/\s/g, '') + 'ChatHistory' // chat history keys take the form of 'usernameChatHistory'
     return JSON.parse(localStorage.getItem(key)) ?? [{'type': 'replies', 'text': 'Hello. How can I help you with your test preparation today?'}];
@@ -27,6 +31,16 @@ function submitMessage() {
     const message = messageEl.value.trim();
     messageEl.value = '';
     if (message) {
+        // pseudo database to store trending questions
+        const trendingQuestions = getTrendingQuestions();
+        if (trendingQuestions[message]) {
+            trendingQuestions[message] += 1;
+        } else {
+            trendingQuestions[message] = 1;
+        }
+        localStorage.setItem('trendingQuestions', JSON.stringify(trendingQuestions));
+
+        // logic required to send message
         const messageDict = {'type': 'sent', 'text': message};
         const chatHistory = getChatHistory();
         chatHistory.push(messageDict);
@@ -41,40 +55,60 @@ function submitMessage() {
     }
 }
 
-function getReply(message) { // placeholder function for when the chatbot is implemented
-    const randomIndex = Math.floor(Math.random() * 20);
-    const responses = [
-        'Hello! How can I assist you with your test preparation today?',
-        'I recommend starting your study sessions with a quick review of previously learned material.',
-        'Practice tests are a great way to familiarize yourself with the test format.',
-        'Remember to take regular breaks during your study sessions to avoid burnout.',
-        'Flashcards can be a useful tool for memorizing key facts and definitions.',
-        'Try to understand the concepts instead of just memorizing the facts.',
-        'Group study can be effective if everyone is focused on the goal.',
-        'Don\'t forget to get a good night\'s sleep before the test day.',
-        'Eating a healthy meal before the test can help improve concentration.',
-        'Try to stay calm and composed during the test. Anxiety can affect performance.',
-        'If you\'re stuck on a question, move on to the next one and come back to it later.',
-        'Make sure to read the questions carefully before answering.',
-        'It\'s okay to guess if you\'re unsure about an answer. It\'s better than leaving it blank.',
-        'Reviewing your answers before submitting the test can help catch any mistakes.',
-        'Creating a study schedule can help manage your time effectively.',
-        'Try to find a quiet and comfortable place to study.',
-        'Using a variety of study materials can help reinforce learning.',
-        'Remember, it\'s okay to ask for help if you\'re struggling with a topic.',
-        'Stay positive and believe in your ability to do well on the test.',
-        'Good luck with your test preparation!'
-      ];
+function getReply(message) { 
+    let apiKey;
+    fetch('./config.json')
+        .then(response => response.json())
+        .then(data => {
+            apiKey = data.API_KEY;
+            const chatHistory = getChatHistory();
+            const promptText = constructPrompt(chatHistory, message);
 
-    text = responses[randomIndex]; 
-    messageDict = {'type': 'replies', 'text': text};
-    const chatHistory = getChatHistory();
-    chatHistory.push(messageDict);
-    const key = getUsername().replace(/\s/g, '') + 'ChatHistory';
-    localStorage.setItem(key, JSON.stringify(chatHistory));
-    const messageEl = document.createElement('li');
-    messageEl.innerHTML = `<span>${messageDict['text']}</span>`;
-    messageEl.className = messageDict['type'];
-    chatDisplay.appendChild(messageEl);
-    messageEl.scrollIntoView();
+            const requestBody = {
+                messages: [
+                    { role: "user", content: promptText }
+                ],
+                model: "gpt-3.5-turbo", // The model identifier
+                max_tokens: 100, // Maximum number of tokens to generate
+                temperature: 0.7, // Control randomness of the generated text (optional)
+                stop: ["\n"] // Stop generation at the first newline character (optional)
+            };
+            
+            let text;
+            fetch("https://api.openai.com/v1/chat/completions", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${apiKey}`
+                },
+                body: JSON.stringify(requestBody)
+            })
+            .then(response => response.json())
+            .then(data => {
+                text = data.choices[0]['message']['content'].trim();
+                console.log(text);
+                messageDict = {'type': 'replies', 'text': text};
+                chatHistory.push(messageDict);
+                const key = getUsername().replace(/\s/g, '') + 'ChatHistory';
+                localStorage.setItem(key, JSON.stringify(chatHistory));
+                const messageEl = document.createElement('li');
+                messageEl.innerHTML = `<span>${messageDict['text']}</span>`;
+                messageEl.className = messageDict['type'];
+                chatDisplay.appendChild(messageEl);
+                messageEl.scrollIntoView();
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                text = "Error: Failed to generate a response. Please try again.";
+            });
+        });
+}
+
+function constructPrompt(chatHistory, message) {
+    let promptText = "The following is a conversation with an AI assistant named TestPrep StrateGPT designed to help with test prep for college exams such as the ACT and SAT. The assistant is helpful, creative, clever, and very friendly.\n\n";
+    for (let messageDict of chatHistory) {
+        promptText += messageDict['text'] + "\n";
+    }
+    promptText += message;
+    return promptText;
 }

@@ -54,7 +54,7 @@ ul.messages-list li.replies span {
 
 .chat-box {
     position: absolute;
-    bottom: 18vh;
+    bottom: 10vh;
     
     left: 50%;
     transform: translate(-50%, 0%);
