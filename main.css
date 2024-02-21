@@ -28,11 +28,11 @@
     }
     
     div.chat-box {
-        width: 95vw;
+        width: 75vw;
         display: flex;
         align-items: center;
         justify-content: center;
-        bottom: 100px;
+        bottom: 12vh;
     }
 
     div.login-box {

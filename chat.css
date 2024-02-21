@@ -2,11 +2,14 @@ main {
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
+    height: calc(100vh - 130px); /* 1300px is the height of the header and footer*/
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .messages {
     margin-top: 40px;
-    margin-bottom: 40px;
+    margin-bottom: 10vh;
 }
 
 ul.messages-list {
@@ -51,8 +54,17 @@ ul.messages-list li.replies span {
 
 .chat-box {
     position: absolute;
-    bottom: 90px;
+    bottom: 18vh;
     
     left: 50%;
     transform: translate(-50%, 0%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    height: 6vh;
 }
