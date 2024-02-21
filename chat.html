@@ -50,9 +50,9 @@
       </div>
 
       <div class="chat-box">
-        <form method="post"> <!-- Add action later -->
-          <input type="text" id="message-input" placeholder="Type message here" />
-          <button class="btn btn-primary gap-3" type="button">Send</button>
+        <form id="chat-input" method="post"> <!-- Add action later -->
+          <input type="text" class="message-input" placeholder="Type message here" />
+          <button class="btn btn-primary gap-3" type="submit" onclick="submitMessage()" onsubmit="submitMessage();">Send</button>
         </form>
       </div>
     </main>
