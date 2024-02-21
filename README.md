@@ -47,3 +47,14 @@ For this deliverable, I styled my site using CSS and Bootstrap
 - Application elements: Dynamic placement via CSS Flex maintains proper spacing with different viewport sizes. Adding contrast and coloring for ease of use
 - Application text content: Consistent fonts, clean colors, and contrast that all allow for easy reading, appropriate spacing, etc.
 - Application images: Present on about page and as background image for login page
+
+## JavaScript Deliverable
+
+- Prerequisite: DONE. Simon JavaScript deployed to your production environment
+- Prerequisite: DONE. A link to your GitHub startup repository prominently displayed on your application's home page
+- Prerequisite: DONE. At least 10 git commits spread consistently throughout the assignment period (although I completed the project the day it was assigned, so it's not very spread out)
+
+- JavaScript support for future login: Login page stores username in localStorage and displays username on the other pages
+- JavaScript support for future database information: user-specific chat history stored in localStorage. Trending questions currently also stored in localStorage (and displayed on Trending page)
+- JavaScript support for future Websocket: used SetInterval() to cycle out the 'active users' that are displayed on the trending page. 
+- Javascript support for application's interaction logic: chat page constructs prompts based on the user's chat history and sends requests to OpenAI to generate an appropriate response. Chat messages dynamically displayed and formatted. 
