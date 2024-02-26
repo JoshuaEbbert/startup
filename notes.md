@@ -789,3 +789,38 @@ try {
   console.log(`Toss completed`);
 }
 ```
+
+## Internet
+
+### TCP/IP
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Example</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Application</td>
+<td>HTTPS</td>
+<td>Functionality like web browsing</td>
+</tr>
+<tr>
+<td>Transport</td>
+<td>TCP</td>
+<td>Moving connection information packets</td>
+</tr>
+<tr>
+<td>Internet</td>
+<td>IP</td>
+<td>Establishing connections</td>
+</tr>
+<tr>
+<td>Link</td>
+<td>Fiber, hardware</td>
+<td>Physical connections</td>
+</tr>
+</tbody>
+</table>
