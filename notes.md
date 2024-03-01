@@ -972,3 +972,27 @@ fetch('https://jsonplaceholder.typicode.com/posts', {
     console.log(jsonResponse);
   });
 ```
+
+### Node.js
+
+Using JS for backend as well
+```
+node -e "<js statement>"
+```
+
+```
+node <js file>
+```
+
+#### Package installation
+1. npm init (-y) 
+    - within program directory
+2. npm install 
+3. 'require' statement in js code
+    - ```
+    const package = require('pkg-name');
+    ```
+
+*Also necessary to include node-modules in your .gitignore
+
+Note that you can also start up Node and execute the index.js code directly in VS Code. To do this open index.js in VS Code and press the 'F5' key. This should ask you what program you want to run. Select node.js. This starts up Node.js with the index.js file, but also attaches a debugger so that you can set breakpoints in the code and step through each line of code.
