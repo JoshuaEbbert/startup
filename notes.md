@@ -996,3 +996,33 @@ node <js file>
 *Also necessary to include node-modules in your .gitignore
 
 Note that you can also start up Node and execute the index.js code directly in VS Code. To do this open index.js in VS Code and press the 'F5' key. This should ask you what program you want to run. Select node.js. This starts up Node.js with the index.js file, but also attaches a debugger so that you can set breakpoints in the code and step through each line of code.
+
+### Node Express
+
+```
+npm install express
+```
+
+```
+const express = require('express');
+const app = express();
+
+app.listen(8080);
+```
+
+```
+app.get('/store/:storeName', (req, res, next) => {
+  res.send({name: req.params.storeName});
+});
+```
+
+#### Middleware
+Code example 
+```
+app.use((req, res, next) => {
+  console.log(req.originalUrl);
+  next();
+});
+```
+
+Remember that the order that you add your middleware to the Express app object controls the order that the middleware functions are called. Any middleware that does not call the next function after doing its processing, stops the middleware chain from continuing.
