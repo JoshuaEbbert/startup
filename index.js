@@ -38,6 +38,8 @@ let trending = [];
 
 function updateTrending(newEntry, trending) {
   // Update the trending list
-  trending.append(newEntry);
+  if (newEntry.question != null) {
+    trending.push(newEntry.question);
+  }
   return trending;
 }
