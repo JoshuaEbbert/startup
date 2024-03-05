@@ -64,7 +64,7 @@ For this deliverable, I styled my site using CSS and Bootstrap
 - Prerequisite: DONE. Simon Service deployed to your production environment
 - Prerequisite: DONE. A link to your GitHub startup repository prominently displayed on your application's home page
 - Prerequisite: DONE. Notes in your startup Git repository README.md file documenting what you modified and added with this deliverable. The TAs will only grade things that have been clearly described as being completed. Review the voter app as an example.
-- Prerequisite: I accidentally implemented part of this deliverable in the previous phase. As such, I only had to add node express and service endpoints (which required about 6 commits worth of work).
+- Prerequisite: I accidentally implemented part of this deliverable in the previous phase. As such, I only had to add node express and service endpoints (which required about 6-8 commits worth of work).
 
 Backend web service support and interaction
 40% - Create an HTTP service using Node.js and Express
