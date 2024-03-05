@@ -57,4 +57,24 @@ For this deliverable, I styled my site using CSS and Bootstrap
 - JavaScript support for future login: Login page stores username in localStorage and displays username on the other pages
 - JavaScript support for future database information: user-specific chat history stored in localStorage. Trending questions currently also stored in localStorage (and displayed on Trending page)
 - JavaScript support for future Websocket: used SetInterval() to cycle out the 'active users' that are displayed on the trending page. 
-- Javascript support for application's interaction logic: chat page constructs prompts based on the user's chat history and sends requests to OpenAI to generate an appropriate response. Chat messages dynamically displayed and formatted. 
+- Javascript support for application's interaction logic: chat page constructs prompts based on the user's chat history and sends requests to OpenAI to generate an appropriate response. Chat messages dynamically displayed and formatted.
+
+## Service Deliverable
+
+- Prerequisite: DONE. Simon Service deployed to your production environment
+- Prerequisite: DONE. A link to your GitHub startup repository prominently displayed on your application's home page
+- Prerequisite: DONE. Notes in your startup Git repository README.md file documenting what you modified and added with this deliverable. The TAs will only grade things that have been clearly described as being completed. Review the voter app as an example.
+- Prerequisite: I accidentally implemented part of this deliverable in the previous phase. As such, I only had to add node express and service endpoints (which required about 6 commits worth of work).
+
+Backend web service support and interaction
+40% - Create an HTTP service using Node.js and Express
+- DONE
+10% - Frontend served up using Express static middleware
+- DONE
+10% - Your frontend calls third party service endpoints
+- Chat functionality implemented via calls to OpenAI's chat completion services
+20% - Your backend provides service endpoints
+- GET and POST options for /api/trending to access and update popular questions asked in chat
+20% - Your frontend calls your service endpoints
+- Trending page displays results of GET request 
+- Chat page makes POST requests to update 'trending' as the user asks questions
