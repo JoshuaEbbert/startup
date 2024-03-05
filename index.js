@@ -33,3 +33,11 @@ app.use((_req, res) => {
   app.listen(port, () => {
     console.log(`Listening on port ${port}`);
   });
+
+let trending = [];
+
+function updateTrending(newEntry, trending) {
+  // Update the trending list
+  trending.append(newEntry);
+  return trending;
+}
