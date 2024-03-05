@@ -34,12 +34,19 @@ app.use((_req, res) => {
     console.log(`Listening on port ${port}`);
   });
 
-let trending = [];
+let trending = {};
 
 function updateTrending(newEntry, trending) {
-  // Update the trending list
-  if (newEntry.question != null) {
-    trending.push(newEntry.question);
-  }
-  return trending;
+    // Update the trending list
+    if (newEntry.question != null) {
+        return trending;
+    }
+
+    if (trending[newEntry.question] == null) {
+        trending[newEntry.question] = 1;
+    } else {
+        trending[newEntry.question]++;
+    }
+  
+    return trending;
 }
