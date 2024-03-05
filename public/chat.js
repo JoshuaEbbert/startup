@@ -12,8 +12,21 @@ for (let messageDict of getChatHistory()) { // chat history is a list of diction
     chatDisplay.appendChild(messageEl);
 }
 
-function getTrendingQuestions() { // dictionary with counts per question
-    return JSON.parse(localStorage.getItem('trendingQuestions')) ?? {};
+async function getTrendingQuestions() { // dictionary with counts per question
+    try {
+        const response = await fetch('/api/trending', {
+          method: 'POST',
+          headers: {'content-type': 'application/json'},
+          body: JSON.stringify(newScore),
+        });
+  
+        // Store what the service gave us as the high scores
+        const scores = await response.json();
+        localStorage.setItem('scores', JSON.stringify(scores));
+      } catch {
+        // If there was an error then just track scores locally
+        this.updateScoresLocal(newScore);
+      }
 }
 
 function getChatHistory() {
@@ -31,14 +44,7 @@ function submitMessage() {
     const message = messageEl.value.trim();
     messageEl.value = '';
     if (message) {
-        // pseudo database to store trending questions
-        const trendingQuestions = getTrendingQuestions();
-        if (trendingQuestions[message]) {
-            trendingQuestions[message] += 1;
-        } else {
-            trendingQuestions[message] = 1;
-        }
-        localStorage.setItem('trendingQuestions', JSON.stringify(trendingQuestions));
+        updateTrending(message);
 
         // logic required to send message
         const messageDict = {'type': 'sent', 'text': message};
@@ -111,4 +117,31 @@ function constructPrompt(chatHistory, message) {
     }
     promptText += message;
     return promptText;
+}
+
+async function updateTrending(question) {
+    try {
+        const response = await fetch('/api/trending', {
+            method: 'POST',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify({'question': question}),
+        });
+  
+        // Store what the service gives us as the trending questions
+        const trending = await response.json();
+        localStorage.setItem('trendingQuestions', JSON.stringify(trending));
+    } catch {
+        // If there was an error then just track scores locally
+        this.updateTrendingLocal(question);
+    }
+}
+
+function updateTrendingLocal(question) {
+    let trendingQuestions = JSON.parse(localStorage.getItem('trendingQuestions')) ?? {};
+    if (trendingQuestions[question] == null) {
+        trendingQuestions[question] = 1;
+    } else {
+        trendingQuestions[question]++;
+    }
+    localStorage.setItem('trendingQuestions', JSON.stringify(trendingQuestions));
 }

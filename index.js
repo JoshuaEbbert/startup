@@ -38,7 +38,7 @@ let trending = {};
 
 function updateTrending(newEntry, trending) {
     // Update the trending list
-    if (newEntry.question != null) {
+    if (newEntry.question == null) {
         return trending;
     }
 
