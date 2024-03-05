@@ -10,6 +10,21 @@ app.use(express.json());
 // Serve up the frontend static content hosting
 app.use(express.static('public'));
 
+// Router for service endpoints
+const apiRouter = express.Router();
+app.use(`/api`, apiRouter);
+
+// updateScores
+apiRouter.get('/trending', (_req, res) => {
+  res.send(trending);
+});
+
+// updateTrending
+apiRouter.post('/trending', (req, res) => {
+  scores = updateTrending(req.body, trending);
+  res.send(trending);
+});
+
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
     res.sendFile('index.html', { root: 'public' });
