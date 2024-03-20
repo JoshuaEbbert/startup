@@ -78,3 +78,21 @@ Backend web service support and interaction
 20% - Your frontend calls your service endpoints
 - Trending page displays results of GET request 
 - Chat page makes POST requests to update 'trending' as the user asks questions
+
+## Login Deliverable
+
+- Prerequisite: DONE. Simon Login deployed to your production environment
+- Prerequisite: DONE. A link to your GitHub startup repository prominently displayed on your application's home page
+- Prerequisite: DONE. Notes in your startup Git repository README.md file documenting what you modified and added with this deliverable. The TAs will only grade things that have been clearly described as being completed. Review the voter app as an example.
+- Prerequisite: DONE. At least 10 git commits spread consistently throughout the assignment period.
+
+Application authentication and authorization
+20% - Supports new user registration. DONE
+20% - Supports existing user authentication. DONE
+20% - Stores application data in MongoDB. DONE
+- Trending questions and their counts are stored in MongoDB
+20% - Stores and retrieves credentials in MongoDB. DONE
+- Verified that credentials are stored and updated
+20% - Restricts application functionality based upon authentication. DONE
+- Other pages have limited functionality (no visible chat-box, trending information not displayed, etc) if the user is not authenticated. Endpoints require authorization to return desired information.
+
