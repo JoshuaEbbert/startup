@@ -21,3 +21,11 @@ async function authenticateCredentials(url) {
         msgModal.show();
     }
 }
+
+async function login() {
+    authenticateCredentials('/api/auth/login');
+}
+
+async function create() {
+    authenticateCredentials('/api/auth/create');
+}
