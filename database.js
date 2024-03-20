@@ -40,24 +40,27 @@ async function createUser(username, password) {
   return user;
 }
 
-// function addTrending(question) {
-//   scoreCollection.insertOne(question);
-// }
+function updateTrending(question) {
+  const query = { question: question };
+  const update = { $inc: { count: 1 } };
+  const options = { upsert: true };
+  return trendingCollection.updateOne(query, update, options);
+}
 
-// function getTrending() {
-//   const query = { question: {//fill in} };
-//   const options = {
-//     sort: { score: -1 },
-//     limit: 5,
-//   };
-//   const cursor = scoreCollection.find(query, options);
-//   return cursor.toArray();
-// }
+function getTrending() {
+  const query = { count: { $gt: 0 } };
+  const options = {
+    sort: { score: -1 },
+    limit: 10,
+  };
+  const cursor = trendingCollection.find(query, options);
+  return cursor.toArray();
+}
 
 module.exports = {
   getUser,
   getUserByToken,
   createUser,
-//   addTrending,
-//   getTrending,
+  updateTrending,
+  getTrending,
 };

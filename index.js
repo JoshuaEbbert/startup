@@ -72,12 +72,13 @@ secureApiRouter.use(async (req, res, next) => {
 
 // updateScores
 secureApiRouter.get('/trending', (_req, res) => {
+  trending = DB.getTrending();
   res.send(trending);
 });
 
 // updateTrending
 secureApiRouter.post('/trending', (req, res) => {
-  scores = updateTrending(req.body, trending);
+  trending = DB.updateTrending(req.body.question);
   res.send(trending);
 });
 
@@ -96,22 +97,22 @@ app.listen(port, () => {
 });
 
 //TODO: move trending to a database
-let trending = {};
+// let trending = {};
 
-function updateTrending(newEntry, trending) {
-    // Update the trending list
-    if (newEntry.question == null) {
-        return trending;
-    }
+// function updateTrending(newEntry, trending) {
+//     // Update the trending list
+//     if (newEntry.question == null) {
+//         return trending;
+//     }
 
-    if (trending[newEntry.question] == null) {
-        trending[newEntry.question] = 1;
-    } else {
-        trending[newEntry.question]++;
-    }
+//     if (trending[newEntry.question] == null) {
+//         trending[newEntry.question] = 1;
+//     } else {
+//         trending[newEntry.question]++;
+//     }
   
-    return trending;
-}
+//     return trending;
+// }
 
 // setAuthCookie in the HTTP response
 function setAuthCookie(res, authToken) {
