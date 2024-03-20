@@ -71,14 +71,14 @@ secureApiRouter.use(async (req, res, next) => {
 });
 
 // updateScores
-secureApiRouter.get('/trending', (_req, res) => {
-  trending = DB.getTrending();
+secureApiRouter.get('/trending', async (_req, res) => {
+  const trending = await DB.getTrending();
   res.send(trending);
 });
 
 // updateTrending
 secureApiRouter.post('/trending', (req, res) => {
-  trending = DB.updateTrending(req.body.question);
+  const trending = DB.updateTrending(req.body.question);
   res.send(trending);
 });
 

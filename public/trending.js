@@ -23,8 +23,7 @@ async function loadTrendingQuestions() { // dictionary with counts per question.
    
 async function displayTrending(questions) {    
     const trendingDisplay = document.querySelector('.trending');
-    questions = Object.keys(questions).sort((a, b) => questions[b] - questions[a]).slice(0, 5);
-
+    
     if (!(questions[0] === "msg")) {
         for (let key of questions) { // returns a dictionary of questions asked and their counts
             const questionEl = document.createElement('li');

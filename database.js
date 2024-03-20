@@ -47,14 +47,14 @@ function updateTrending(question) {
   return trendingCollection.updateOne(query, update, options);
 }
 
-function getTrending() {
+async function getTrending() {
   const query = { count: { $gt: 0 } };
-  const options = {
-    sort: { score: -1 },
-    limit: 10,
+  const options = { 
+    projection: { _id: 0, question: 1, count: 1 }, 
+    sort: { count: -1 } 
   };
-  const cursor = trendingCollection.find(query, options);
-  return cursor.toArray();
+  const questionsArray = await trendingCollection.find(query, options).toArray();
+  return questionsArray.map((obj) => obj.question);
 }
 
 module.exports = {
