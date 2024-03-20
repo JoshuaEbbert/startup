@@ -66,5 +66,13 @@ ul.messages-list li.replies span {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
-    height: 6vh;
+    height: 9vh;
 }
+
+.input-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }

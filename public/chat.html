@@ -50,11 +50,11 @@
         </ul>
       </div>
 
-      <div class="chat-box" style="display: none">
-        <form id="chat-input" method="post"> 
+      <div class="chat-box" id="chat-input" method="post" style="display: none">
+        <div class="input-container">
           <input type="text" class="message-input" placeholder="Type message here" />
-          <button class="btn btn-primary gap-3" type="submit" onclick="submitMessage()" onsubmit="submitMessage();">Send</button>
-        </form>
+          <button class="btn btn-primary" type="submit" onclick="submitMessage()">Send</button>
+        </div>
       </div>
 
       <!-- Error dialog -->
