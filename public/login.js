@@ -30,3 +30,10 @@ async function login() {
 async function create() {
     authenticateCredentials('/api/auth/create');
 }
+
+function logout() {
+    localStorage.removeItem('username');
+    fetch(`/api/auth/logout`, {
+      method: 'delete',
+    }).then(() => (window.location.href = '/'));
+}
