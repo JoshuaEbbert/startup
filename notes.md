@@ -1026,3 +1026,9 @@ app.use((req, res, next) => {
 ```
 
 Remember that the order that you add your middleware to the Express app object controls the order that the middleware functions are called. Any middleware that does not call the next function after doing its processing, stops the middleware chain from continuing.
+
+#### Authtokens in Cookies
+
+httpOnly tells the browser to not allow JavaScript running on the browser to read the cookie.
+secure requires HTTPS to be used when sending the cookie back to the server.
+sameSite will only return the cookie to the domain that generated it.
