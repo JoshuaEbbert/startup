@@ -1,3 +1,13 @@
+(async () => {
+    const username = localStorage.getItem('username');
+    if (username) {
+        const chatbox = document.querySelector('.chat-box');
+        if(chatbox) {
+            chatbox.style.display = 'block';
+        }
+    }
+})();
+
 document.getElementById('chat-input').addEventListener('submit', function(event) {
     event.preventDefault();
 });

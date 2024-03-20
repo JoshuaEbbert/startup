@@ -95,6 +95,7 @@ app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
+//TODO: move trending to a database
 let trending = {};
 
 function updateTrending(newEntry, trending) {
