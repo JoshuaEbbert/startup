@@ -25,12 +25,14 @@ async function displayTrending(questions) {
     const trendingDisplay = document.querySelector('.trending');
     questions = Object.keys(questions).sort((a, b) => questions[b] - questions[a]).slice(0, 5);
 
-    for (let key of questions) { // returns a dictionary of questions asked and their counts
-        const questionEl = document.createElement('li');
-        questionEl.textContent = key;
-        questionEl.className = 'list-group-item'; 
-        console.log(questionEl);
-        trendingDisplay.appendChild(questionEl);
+    if (!(questions[0] === "msg")) {
+        for (let key of questions) { // returns a dictionary of questions asked and their counts
+            const questionEl = document.createElement('li');
+            questionEl.textContent = key;
+            questionEl.className = 'list-group-item'; 
+            console.log(questionEl);
+            trendingDisplay.appendChild(questionEl);
+        }
     }
 
     // Placeholder code for web socket implementation
