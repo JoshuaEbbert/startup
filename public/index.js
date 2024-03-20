@@ -10,6 +10,7 @@ async function authenticateCredentials(url) {
         },
     });
 
+    console.log(response);
     if (response.ok) {
         localStorage.setItem('username', username);
         window.location.href = 'chat.html';
