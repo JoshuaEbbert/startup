@@ -1,3 +1,23 @@
+let activeUsers = new Set();
+
+function configureWebSocket() {
+    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+    this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+    this.socket.onopen = (event) => {
+        activeUsers.clear();
+        activeUsers.add('You are connected!');
+    };
+    this.socket.onclose = (event) => {
+        activeUsers.clear();
+        activeUsers.add('Not connected to the server. Please refresh the page.');
+    };
+    this.socket.onmessage = async (msg) => {
+        const userData = JSON.parse(await msg.data.text());
+        activeUsers = userData.users;
+        // display users
+    };
+}
+
 async function loadTrendingQuestions() { // dictionary with counts per question. Placeholder for the database
     let trending;
     try {
