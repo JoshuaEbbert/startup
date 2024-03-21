@@ -15,9 +15,14 @@ function peerProxy(httpServer) {
   // Keep track of all the connections so we can forward messages (notifications)
   let connections = [];
 
-  wss.on('connection', (ws) => { // ws representing single connection/session
-    const connection = { id: uuid.v4(), alive: true, ws: ws };
+  wss.on('connection', (ws, req) => { // ws representing single connection/session
+    const url = new URL(req.url, `http://${req.headers.host}`);
+    let username = url.searchParams.get('username');
+    const connection = {username: username, id: uuid.v4(), alive: true, ws: ws };
     connections.push(connection);
+
+    // Sending updated list of users to all connected clients
+    sendActiveUsers(connections);
 
     // Forward messages to everyone except the sender
     ws.on('message', function message(data) {
@@ -36,6 +41,7 @@ function peerProxy(httpServer) {
           return true;
         }
       });
+      sendActiveUsers(connections);
     });
 
     // Respond to pong messages by marking the connection alive
@@ -56,6 +62,14 @@ function peerProxy(httpServer) {
       }
     });
   }, 10000);
+
+  function sendActiveUsers(connections) {
+    let users = connections.map((c) => c.username);
+    let message = JSON.stringify({ msgType: 'activeUsers', data: users });
+    connections.forEach((c) => {
+      c.ws.send(message);
+    });
+  }
 }
 
 module.exports = { peerProxy };

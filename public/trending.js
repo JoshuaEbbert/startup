@@ -1,20 +1,26 @@
 let activeUsers = new Set();
 
 function configureWebSocket() {
+    const username = localStorage.getItem('username') ?? 'Anonymous';
     const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-    this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
-    this.socket.onopen = (event) => {
+    this.socket = new WebSocket(`${protocol}://${window.location.host}/ws?username=${encodeURIComponent(username)}`);
+    this.socket.onopen = () => {
         activeUsers.clear();
-        activeUsers.add('You are connected!');
+        activeUsers.add(username);
+        displayUserList(activeUsers);
     };
-    this.socket.onclose = (event) => {
+    this.socket.onclose = () => {
         activeUsers.clear();
         activeUsers.add('Not connected to the server. Please refresh the page.');
+        displayUserList(activeUsers);
     };
-    this.socket.onmessage = async (msg) => {
-        const userData = JSON.parse(await msg.data.text());
-        activeUsers = userData.users;
+    this.socket.onmessage = async (event) => {
+        const msg = JSON.parse(await event.data);
+        if (msg.msgType === 'activeUsers') {
+            activeUsers = new Set(msg.data);
+        }
         // display users
+        displayUserList(activeUsers);
     };
 }
 
@@ -53,33 +59,23 @@ async function displayTrending(questions) {
             trendingDisplay.appendChild(questionEl);
         }
     }
+}
 
-    // Placeholder code for web socket implementation
+function displayUserList(users) {
     const activeDisplay = document.querySelector('.active-users');
 
-    const noUsers = document.createElement('li');
-    noUsers.textContent = 'No active users';
-    noUsers.className = 'list-group-item';
-    activeDisplay.appendChild(noUsers);
+    while (activeDisplay.firstChild) {
+        activeDisplay.removeChild(activeDisplay.firstChild);
+    }
 
-    const possibleUsers = ['Kate Strong', 'Josh Ebbert', 'Dr. Jensen', 'Unnamed TA', 'Ur Mom', 'Becky Strong', 'Charlie the dog'];
-    setInterval(() => {
-        while (activeDisplay.firstChild) {
-            activeDisplay.removeChild(activeDisplay.firstChild);
-        }
-
-        activeUsers = new Set();
-        for(let i = 0; i < Math.floor(Math.random() * 6) + 1; i++) {
-            activeUsers.add(possibleUsers[Math.floor(Math.random() * possibleUsers.length)]);
-        }
-
-        for (let user of activeUsers) {
-            const userEl = document.createElement('li');
-            userEl.textContent = user;
-            userEl.className = 'list-group-item';
-            activeDisplay.appendChild(userEl);
-        }
-    }, 10000);
+    for (let user of activeUsers) {
+        const userEl = document.createElement('li');
+        userEl.textContent = user;
+        userEl.className = 'list-group-item';
+        activeDisplay.appendChild(userEl);
+    }
 }
+
+configureWebSocket();
 
 loadTrendingQuestions();
