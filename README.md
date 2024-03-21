@@ -96,3 +96,19 @@ Application authentication and authorization
 20% - Restricts application functionality based upon authentication. DONE
 - Other pages have limited functionality (no visible chat-box, trending information not displayed, etc) if the user is not authenticated. Endpoints require authorization to return desired information.
 
+## WebSocket Deliverable
+
+Prerequisite: DONE. Simon WebSocket deployed to your production environment
+Prerequisite: DONE. A link to your GitHub startup repository prominently displayed on your application's home page
+Prerequisite: DONE. Notes in your startup Git repository README.md file documenting what you modified and added with this deliverable. The TAs will only grade things that have been clearly described as being completed. Review the voter app as an example.
+Prerequisite: I had tried to set up my code for websocket implementation, so it went a little more quickly than most deliverables. It only required 8 commits worth of code, so I'm slightly short of this one. 
+
+WebSocket support for data pushed from the backend
+20% - Backend listens for WebSocket connection. DONE
+- Successfully upgrades appropriate http requests and maintains connections
+20% - Frontend makes WebSocket connection. DONE
+- WebSocket configured from every page to actively track users on the site
+30% - Data sent over WebSocket connection. DONE
+- Message containing event type and list of active users received by each client every time someone joins/leaves the StrateGPT chat application. 
+30% - WebSocket data displayed in the application interface. DONE
+- Trending page displays active users (regardless of what they're doing on the application)
