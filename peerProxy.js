@@ -41,7 +41,7 @@ function peerProxy(httpServer) {
           return true;
         }
       });
-      sendActiveUsers(connections);
+      setTimeout(() => sendActiveUsers(connections), 1000);
     });
 
     // Respond to pong messages by marking the connection alive
