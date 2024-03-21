@@ -96,24 +96,6 @@ app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-//TODO: move trending to a database
-// let trending = {};
-
-// function updateTrending(newEntry, trending) {
-//     // Update the trending list
-//     if (newEntry.question == null) {
-//         return trending;
-//     }
-
-//     if (trending[newEntry.question] == null) {
-//         trending[newEntry.question] = 1;
-//     } else {
-//         trending[newEntry.question]++;
-//     }
-  
-//     return trending;
-// }
-
 // setAuthCookie in the HTTP response
 function setAuthCookie(res, authToken) {
   res.cookie(authCookieName, authToken, {
