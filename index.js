@@ -93,10 +93,6 @@ app.use(function (err, req, res, next) {
   res.status(500).send({ type: err.name, message: err.message });
 });
   
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
-});
-
 // setAuthCookie in the HTTP response
 function setAuthCookie(res, authToken) {
   res.cookie(authCookieName, authToken, {
@@ -106,8 +102,8 @@ function setAuthCookie(res, authToken) {
   });
 }
 
-// const httpService = app.listen(port, () => {
-//   console.log(`Listening on port ${port}`);
-// });
+const httpService = app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+});
 
-// peerProxy(httpService);
+peerProxy(httpService);

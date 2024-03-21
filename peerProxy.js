@@ -12,10 +12,10 @@ function peerProxy(httpServer) {
     });
   });
 
-  // Keep track of all the connections so we can forward messages
+  // Keep track of all the connections so we can forward messages (notifications)
   let connections = [];
 
-  wss.on('connection', (ws) => {
+  wss.on('connection', (ws) => { // ws representing single connection/session
     const connection = { id: uuid.v4(), alive: true, ws: ws };
     connections.push(connection);
 
