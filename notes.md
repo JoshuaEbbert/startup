@@ -1032,3 +1032,7 @@ Remember that the order that you add your middleware to the Express app object c
 httpOnly tells the browser to not allow JavaScript running on the browser to read the cookie.
 secure requires HTTPS to be used when sending the cookie back to the server.
 sameSite will only return the cookie to the domain that generated it.
+
+## React
+
+![react program flow](image.png)
