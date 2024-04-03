@@ -95,7 +95,7 @@ function submitMessage() {
 
 function getReply(message) { 
     let apiKey;
-    fetch('./config.json')
+    fetch('./service/config.json')
         .then(response => response.json())
         .then(data => {
             apiKey = data.API_KEY;
