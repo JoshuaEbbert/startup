@@ -21,3 +21,23 @@ main.login {
     width: 33vw;  
     height: 37vh;
 }
+
+.logged-in-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: 1px solid #ddd; 
+    border-radius: 15px;
+    padding: 60px;
+    width: 38vw;  
+    height: 24vh;
+}
+
+.logged-in-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

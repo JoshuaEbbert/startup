@@ -23,14 +23,15 @@ export function Authenticated(props) {
   }
 
   return (
-    <div>
-      <div className='playerName'>{props.username}</div>
-      <Button variant='primary' onClick={() => navigate('/chat')}>
-        Chat
-      </Button>
-      <Button variant='secondary' onClick={() => logout()}>
-        Logout
-      </Button>
-    </div>
+    <div className="logged-in-box">
+            <h1 className="mb-3">Welcome</h1>
+            <div className="logged-in-form">
+                <label htmlFor="username">Logged in as {props.username}</label>
+                <div className="m-3 d-flex justify-content-between">
+                    <button style={{margin: "2px"}} className="btn btn-primary gap-3" onClick={() => navigate('/chat')}>Chat</button>
+                    <button style={{margin: "2px"}} className="btn btn-secondary gap-3" onClick={() => logout()}>Logout</button>
+                </div>
+            </div>
+        </div>
   );
 }
