@@ -9,9 +9,27 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
 function App() {
-    const [username, setUserName] = React.useState(localStorage.getItem('username') || '');
+    const [username, setUsername] = React.useState(localStorage.getItem('username') || '');
     const currentAuthState = username === '' ? AuthState.Unauthenticated : AuthState.Authenticated;
     const [authState, setAuthState] = React.useState(currentAuthState);
+    const [activeUsers, setActiveUsers] = React.useState(new Set());
+
+    function configureWebSocket() {
+        const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+        this.socket = new WebSocket(`${protocol}://${window.location.host}/ws?username=${encodeURIComponent(username)}`);
+        this.socket.onopen = () => {
+            setActiveUsers(new Set([username]));
+        };
+        this.socket.onclose = () => {
+            setActiveUsers(new Set(["Not connected to the server. Please refresh the page."]));
+        };
+        this.socket.onmessage = async (event) => {
+            const msg = JSON.parse(await event.data);
+            if (msg.msgType === 'activeUsers') {
+                setActiveUsers(new Set(msg.data));
+            }
+        };
+    }
 
     return (
         <BrowserRouter>
@@ -63,15 +81,27 @@ function App() {
                                 authState={authState}
                                 onAuthChange={(username, authState) => {
                                 setAuthState(authState);
-                                setUserName(username);
+                                setUsername(username);
                                 }}
                             />
                         } 
                         exact 
                     />
-                    <Route path='/login' element={<Login />} />
-                    <Route path='/chat' element={<Chat />} />
-                    <Route path='/trending' element={<Trending />} />
+                    <Route 
+                        path='/login' 
+                        element={
+                            <Login 
+                                username={username}
+                                authState={authState}
+                                onAuthChange={(username, authState) => {
+                                setAuthState(authState);
+                                setUsername(username);
+                                }}
+                            />
+                        }  
+                    />
+                    <Route path='/chat' element={<Chat username={username} prepareWebSocket={configureWebSocket}/>} />
+                    <Route path='/trending' element={<Trending username={username} prepareWebSocket={configureWebSocket}/>} />
                     <Route path='/about' element={<About />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>
