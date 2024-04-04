@@ -9,8 +9,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
 function App() {
-    const [username, setUserName] = React.useState(localStorage.getItem('username') || 'No username provided');
-    const currentAuthState = username === 'No username provided' ? AuthState.Authenticated : AuthState.Unauthenticated;
+    const [username, setUserName] = React.useState(localStorage.getItem('username') || '');
+    const currentAuthState = username === '' ? AuthState.Unauthenticated : AuthState.Authenticated;
     const [authState, setAuthState] = React.useState(currentAuthState);
 
     return (
@@ -27,7 +27,7 @@ function App() {
                     <div className="header-list pr-25">
                         <ul className="nav nav-pills">
                             <li className='nav-item'>
-                                <NavLink className='nav-link' to='/' exact>
+                                <NavLink className='nav-link' to='/'>
                                 Login
                                 </NavLink>
                             </li>

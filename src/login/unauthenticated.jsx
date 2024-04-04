@@ -39,9 +39,9 @@ export function Unauthenticated(props) {
             <h1 className="mb-3">Welcome</h1>
             <div className="login-form">
                 <label htmlFor="username">Username</label>
-                <input type="text" id="username" onChange={(e) => setUsername(e.target.value)} placeholder="Type username here" />
+                <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Type username here" />
                 <label htmlFor="password">Password</label>
-                <input type="text" id="password" onChange={(e) => setPassword(e.target.value)} placeholder="Type password here" />
+                <input type="text" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Type password here" />
 
                 <div className="m-3 d-flex justify-content-between">
                     <button style={{margin: "2px"}} className="btn btn-primary gap-3" onClick={login}>Login</button>
