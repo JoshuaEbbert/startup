@@ -1,8 +1,9 @@
 import React from 'react';
+import './chat.css';
 
 export function Chat() {
   return (
-    <main className='container-fluid bg-secondary text-center'> {/* change/remove className tags? */}
+    <main className="chat"> 
       <div>chat displayed here</div>
     </main>
   );

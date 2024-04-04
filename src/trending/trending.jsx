@@ -1,8 +1,9 @@
 import React from 'react';
+import './trending.css';
 
 export function Trending() {
   return (
-    <main className='container-fluid bg-secondary text-center'> {/* change/remove className tags? */}
+    <main className="trending"> 
       <div>Trending displayed here</div>
     </main>
   );

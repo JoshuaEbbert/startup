@@ -1,8 +1,9 @@
 import React from 'react';
+import './login.css';
 
 export function Login() {
   return (
-    <main className='container-fluid bg-secondary text-center'> {/* change/remove className tags? */}
+    <main className="login"> 
       <div>login displayed here</div>
     </main>
   );

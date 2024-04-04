@@ -1,10 +1,11 @@
-main {
+main.chat {
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
     height: calc(100vh - 130px); /* 1300px is the height of the header and footer*/
     overflow-x: hidden;
     overflow-y: auto;
+    background-color: white;
 }
 
 .messages {
