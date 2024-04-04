@@ -25,12 +25,27 @@ function App() {
                     </a>
 
                     <div className="header-list pr-25">
-                    <ul className="nav nav-pills">
-                        <li className="nav-item"><NavLink to="login" className="nav-link" activeClassName="active" aria-current="page">Login</NavLink></li>
-                        <li className="nav-item"><NavLink to="chat" className="nav-link">Chat</NavLink></li>
-                        <li className="nav-item"><NavLink to="trending" className="nav-link">Trending</NavLink></li>
-                        <li className="nav-item"><NavLink to="about" className="nav-link">About</NavLink></li>
-                    </ul>
+                        <ul className="nav nav-pills">
+                            {authState === AuthState.Authenticated && (
+                                <li className='nav-item'>
+                                <NavLink className='nav-link' to='chat'>
+                                    Chat
+                                </NavLink>
+                                </li>
+                            )}
+                            {authState === AuthState.Authenticated && (
+                                <li className='nav-item'>
+                                <NavLink className='nav-link' to='trending'>
+                                    Trending
+                                </NavLink>
+                                </li>
+                            )}
+                            <li className='nav-item'>
+                                <NavLink className='nav-link' to='about'>
+                                About
+                                </NavLink>
+                            </li>
+                        </ul>
                     </div>
                 </header>
 
