@@ -14,23 +14,6 @@ function App() {
     const [authState, setAuthState] = React.useState(currentAuthState);
     const [activeUsers, setActiveUsers] = React.useState(new Set());
 
-    function configureWebSocket() {
-        const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-        this.socket = new WebSocket(`${protocol}://${window.location.host}/ws?username=${encodeURIComponent(username)}`);
-        this.socket.onopen = () => {
-            setActiveUsers(new Set([username]));
-        };
-        this.socket.onclose = () => {
-            setActiveUsers(new Set(["Not connected to the server. Please refresh the page."]));
-        };
-        this.socket.onmessage = async (event) => {
-            const msg = JSON.parse(await event.data);
-            if (msg.msgType === 'activeUsers') {
-                setActiveUsers(new Set(msg.data));
-            }
-        };
-    }
-
     return (
         <BrowserRouter>
             <div className="body">
@@ -100,8 +83,8 @@ function App() {
                             />
                         }  
                     />
-                    <Route path='/chat' element={<Chat username={username} prepareWebSocket={configureWebSocket}/>} />
-                    <Route path='/trending' element={<Trending username={username} prepareWebSocket={configureWebSocket}/>} />
+                    <Route path='/chat' element={<Chat username={username} activeUsers={activeUsers} setActiveUsers={setActiveUsers}/>} />
+                    <Route path='/trending' element={<Trending username={username} activeUsers={activeUsers} setActiveUsers={setActiveUsers}/>} />
                     <Route path='/about' element={<About />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>
