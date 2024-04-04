@@ -50,7 +50,20 @@ function App() {
                 </header>
 
                 <Routes>
-                    <Route path='/' element={<Login />} exact />
+                    <Route 
+                        path='/' 
+                        element={
+                            <Login 
+                                userName={userName}
+                                authState={authState}
+                                onAuthChange={(userName, authState) => {
+                                setAuthState(authState);
+                                setUserName(userName);
+                                }}
+                            />
+                        } 
+                        exact 
+                    />
                     <Route path='/login' element={<Login />} />
                     <Route path='/chat' element={<Chat />} />
                     <Route path='/trending' element={<Trending />} />
