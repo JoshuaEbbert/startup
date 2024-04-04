@@ -9,8 +9,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
 function App() {
-    const [userName, setUserName] = React.useState(localStorage.getItem('userName') || 'No username provided');
-    const currentAuthState = userName === 'No username provided' ? AuthState.Authenticated : AuthState.Unauthenticated;
+    const [username, setUserName] = React.useState(localStorage.getItem('username') || 'No username provided');
+    const currentAuthState = username === 'No username provided' ? AuthState.Authenticated : AuthState.Unauthenticated;
     const [authState, setAuthState] = React.useState(currentAuthState);
 
     return (
@@ -26,6 +26,11 @@ function App() {
 
                     <div className="header-list pr-25">
                         <ul className="nav nav-pills">
+                            <li className='nav-item'>
+                                <NavLink className='nav-link' to='/' exact>
+                                Login
+                                </NavLink>
+                            </li>
                             {authState === AuthState.Authenticated && (
                                 <li className='nav-item'>
                                 <NavLink className='nav-link' to='chat'>
@@ -54,11 +59,11 @@ function App() {
                         path='/' 
                         element={
                             <Login 
-                                userName={userName}
+                                username={username}
                                 authState={authState}
-                                onAuthChange={(userName, authState) => {
+                                onAuthChange={(username, authState) => {
                                 setAuthState(authState);
-                                setUserName(userName);
+                                setUserName(username);
                                 }}
                             />
                         } 
@@ -80,7 +85,7 @@ function App() {
                     </div>
 
                     <div className="align-items-center justify-content-center">
-                        <span className="ms-3 text-muted mobile-disappear username-display">{userName}</span>
+                        <span className="ms-3 text-muted mobile-disappear username-display">{username}</span>
                     </div>
 
                     <ul className="nav col-md-4 justify-content-end list-unstyled d-flex pr-25">

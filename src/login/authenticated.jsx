@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Button from 'react-bootstrap/Button';
 
-import './authenticated.css';
+import './login.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export function Authenticated(props) {
@@ -17,14 +17,14 @@ export function Authenticated(props) {
         // Logout failed. Assuming offline
       })
       .finally(() => {
-        localStorage.removeItem('userName');
+        localStorage.removeItem('username');
         props.onLogout();
       });
   }
 
   return (
     <div>
-      <div className='playerName'>{props.userName}</div>
+      <div className='playerName'>{props.username}</div>
       <Button variant='primary' onClick={() => navigate('/chat')}>
         Chat
       </Button>
