@@ -98,10 +98,10 @@ Application authentication and authorization
 
 ## WebSocket Deliverable
 
-Prerequisite: DONE. Simon WebSocket deployed to your production environment
-Prerequisite: DONE. A link to your GitHub startup repository prominently displayed on your application's home page
-Prerequisite: DONE. Notes in your startup Git repository README.md file documenting what you modified and added with this deliverable. The TAs will only grade things that have been clearly described as being completed. Review the voter app as an example.
-Prerequisite: I had tried to set up my code for websocket implementation, so it went a little more quickly than most deliverables. It only required 8 commits worth of code, so I'm slightly short of this one. 
+- Prerequisite: DONE. Simon WebSocket deployed to your production environment
+- Prerequisite: DONE. A link to your GitHub startup repository prominently displayed on your application's home page
+- Prerequisite: DONE. Notes in your startup Git repository README.md file documenting what you modified and added with this - deliverable. The TAs will only grade things that have been clearly described as being completed. Review the voter app as an example.
+- Prerequisite: I had tried to set up my code for websocket implementation, so it went a little more quickly than most deliverables. It only required 8 commits worth of code, so I'm slightly short of this one. 
 
 WebSocket support for data pushed from the backend
 20% - Backend listens for WebSocket connection. DONE
@@ -112,3 +112,18 @@ WebSocket support for data pushed from the backend
 - Message containing event type and list of active users received by each client every time someone joins/leaves the StrateGPT chat application. 
 30% - WebSocket data displayed in the application interface. DONE
 - Trending page displays active users (regardless of what they're doing on the application)
+
+## React Deliverable
+
+- Prerequisite: DONE. Simon React deployed to your production environment
+- Prerequisite: DONE. A link to your GitHub startup repository prominently displayed on your application's home page
+- Prerequisite: DONE. Notes in your startup Git repository README.md file documenting what you modified and added with this deliverable. The TAs will only grade things that have been clearly described as being completed. Review the voter app as an example.
+- Prerequisite: DONE. At least 10 git commits spread consistently throughout the assignment period.
+Application converted to use React
+10% Bundled using Vite. DONE
+30% Multiple functional react components. DONE
+- App, Chat, Login, Trending, About, Unauthenticated, etc components all implemented
+30% React router. DONE
+- BrowserRouter and Router allow navigation between different components
+30% React hooks. DONE
+- Used to configure websockets on page load, fetch information from database, call third-party endpoints, etc.
