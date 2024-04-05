@@ -4,7 +4,7 @@ main.login {
     flex: 1;
     align-items: center;
     justify-content: center;
-    background-image: url('strategpt-login.jpeg');
+    background-image: url('../../public/strategpt-login.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
 }
