@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './chat.css';
 
 export function Chat({ username, activeUsers, setActiveUsers }) {
     const socket = useRef(null);
+    const [question, setQuestion] = useState('');
+    const [chatMessages, setChatMessages] = useState(getChatHistory());
 
     useEffect(() => {
         const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
@@ -28,9 +30,132 @@ export function Chat({ username, activeUsers, setActiveUsers }) {
         };
     }, [username, setActiveUsers]);
 
+    function getChatHistory() {
+        const key = username.replace(/\s/g, '') + 'ChatHistory' // chat history keys take the form of 'usernameChatHistory'
+        return JSON.parse(localStorage.getItem(key)) ?? [{'type': 'replies', 'text': 'Hello. How can I help you with your test preparation today?'}];
+    }
+
+    function submitMessage() {
+        if (question) {
+            updateTrending(question);
+    
+            // logic required to send message; TODO: sanitize input
+            const messageDict = {'type': 'sent', 'text': question};
+            const chatHistory = getChatHistory();
+            chatHistory.push(messageDict);
+            const key = username.replace(/\s/g, '') + 'ChatHistory';
+            localStorage.setItem(key, JSON.stringify(chatHistory));
+            setChatMessages(chatHistory);
+
+            getReply(question);
+        }
+        setQuestion('');
+    }
+
+    function getReply(message) {
+        let apiKey;
+        fetch('./service/config.json')
+            .then(response => response.json())
+            .then(data => {
+                apiKey = data.API_KEY;
+                const chatHistory = getChatHistory();
+                const promptText = constructPrompt(chatHistory, message);
+
+                const requestBody = {
+                    messages: [
+                        { role: "user", content: promptText }
+                    ],
+                    model: "gpt-3.5-turbo", // The model identifier
+                    max_tokens: 100, // Maximum number of tokens to generate
+                    temperature: 0.7, // Control randomness of the generated text (optional)
+                    stop: ["\n"] // Stop generation at the first newline character (optional)
+                };
+                
+                let text;
+                fetch("https://api.openai.com/v1/chat/completions", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${apiKey}`
+                    },
+                    body: JSON.stringify(requestBody)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    text = data.choices[0]['message']['content'].trim();
+                    console.log(text);
+                    messageDict = {'type': 'replies', 'text': text};
+                    chatHistory.push(messageDict);
+                    const key = getUsername().replace(/\s/g, '') + 'ChatHistory';
+                    localStorage.setItem(key, JSON.stringify(chatHistory));
+
+                    setChatMessages(chatHistory);
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    text = "Error: Failed to generate a response. Please try again.";
+                });
+            });
+    }   
+
+    async function updateTrending(question) {
+        try {
+            const response = await fetch('/api/trending', {
+                method: 'POST',
+                headers: {'content-type': 'application/json'},
+                body: JSON.stringify({'question': question}),
+            });
+      
+            // Store what the service gives us as the trending questions
+            const trending = await response.json();
+            localStorage.setItem('trendingQuestions', JSON.stringify(trending));
+        } catch {
+            // If there was an error then just track scores locally
+            this.updateTrendingLocal(question);
+        }
+    }
+
+    function updateTrendingLocal(question) {
+        let trendingQuestions = JSON.parse(localStorage.getItem('trendingQuestions')) ?? {};
+        if (trendingQuestions[question] == null) {
+            trendingQuestions[question] = 1;
+        } else {
+            trendingQuestions[question]++;
+        }
+        localStorage.setItem('trendingQuestions', JSON.stringify(trendingQuestions));
+    }
+
+    const messagesToDisplay = [];
+    if (chatMessages.length) {
+        for (const [i, msg] of chatMessages.entries()) {
+            messagesToDisplay.push(
+                <li key={i} className={msg['type']}>
+                    <span>{msg['text']}</span>
+                </li>
+            );
+        }
+    } else {
+        trendingItems.push(
+            <li key={0} className='list-group-item'>
+                Be the first to ask a question!
+            </li>
+        );
+    }
+
     return (
         <main className="chat"> 
-        <div>chat displayed here</div>
+            <div class="messages">
+                <ul class="messages-list"> {/* li of 'replies' and 'sent' */}
+                    {messagesToDisplay}
+                </ul>
+            </div>
+
+            <div class="chat-box" id="chat-input" method="post" style="display: none">
+                <div class="input-container">
+                <input type="text" class="message-input" placeholder="Type message here" onChange={(e) => setQuestion(e.target.value)}/>
+                <button class="btn btn-primary" type="submit" value={question} onClick={() => submitMessage()}>Send</button>
+                </div>
+            </div>
         </main>
     );
 }
