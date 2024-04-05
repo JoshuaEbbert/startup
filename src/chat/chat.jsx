@@ -37,9 +37,9 @@ export function Chat({ username, activeUsers, setActiveUsers }) {
 
     function submitMessage() {
         if (question) {
+            setQuestion(sanitizeInput(question));
             updateTrending(question);
     
-            // logic required to send message; TODO: sanitize input
             const messageDict = {'type': 'sent', 'text': question};
             const chatHistory = getChatHistory();
             chatHistory.push(messageDict);
@@ -84,9 +84,9 @@ export function Chat({ username, activeUsers, setActiveUsers }) {
                 .then(data => {
                     text = data.choices[0]['message']['content'].trim();
                     console.log(text);
-                    messageDict = {'type': 'replies', 'text': text};
+                    const messageDict = {'type': 'replies', 'text': text};
                     chatHistory.push(messageDict);
-                    const key = getUsername().replace(/\s/g, '') + 'ChatHistory';
+                    const key = username.replace(/\s/g, '') + 'ChatHistory';
                     localStorage.setItem(key, JSON.stringify(chatHistory));
 
                     setChatMessages(chatHistory);
@@ -111,7 +111,7 @@ export function Chat({ username, activeUsers, setActiveUsers }) {
             localStorage.setItem('trendingQuestions', JSON.stringify(trending));
         } catch {
             // If there was an error then just track scores locally
-            this.updateTrendingLocal(question);
+            updateTrendingLocal(question);
         }
     }
 
@@ -123,6 +123,21 @@ export function Chat({ username, activeUsers, setActiveUsers }) {
             trendingQuestions[question]++;
         }
         localStorage.setItem('trendingQuestions', JSON.stringify(trendingQuestions));
+    }
+
+    function constructPrompt(chatHistory, message) {
+        let promptText = "The following is a conversation with an AI assistant named TestPrep StrateGPT designed to help with test prep for college exams such as the ACT and SAT. The assistant is helpful, creative, clever, and very friendly.\n\n";
+        for (let messageDict of chatHistory) {
+            promptText += messageDict['text'] + "\n";
+        }
+        promptText += message;
+        return promptText;
+    }
+
+    function sanitizeInput(str) {
+        const div = document.createElement('div');
+        div.appendChild(document.createTextNode(str));
+        return div.innerHTML;
     }
 
     const messagesToDisplay = [];
@@ -144,16 +159,16 @@ export function Chat({ username, activeUsers, setActiveUsers }) {
 
     return (
         <main className="chat"> 
-            <div class="messages">
-                <ul class="messages-list"> {/* li of 'replies' and 'sent' */}
+            <div className="messages">
+                <ul className="messages-list"> {/* li of 'replies' and 'sent' */}
                     {messagesToDisplay}
                 </ul>
             </div>
 
-            <div class="chat-box" id="chat-input" method="post" style="display: none">
-                <div class="input-container">
-                <input type="text" class="message-input" placeholder="Type message here" onChange={(e) => setQuestion(e.target.value)}/>
-                <button class="btn btn-primary" type="submit" value={question} onClick={() => submitMessage()}>Send</button>
+            <div className="chat-box" id="chat-input" method="post">
+                <div className="input-container">
+                <input type="text" className="message-input mr-3" placeholder="Type message here" onChange={(e) => setQuestion(e.target.value)}/>
+                <button className="btn btn-primary ml-3" type="submit" value={question} onClick={() => submitMessage()}>Send</button>
                 </div>
             </div>
         </main>

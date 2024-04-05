@@ -76,4 +76,8 @@ ul.messages-list li.replies span {
     justify-content: center;
     align-items: center;
     height: 100%;
-  }
+}
+
+.message-input {
+    margin-right: 5px;
+}
