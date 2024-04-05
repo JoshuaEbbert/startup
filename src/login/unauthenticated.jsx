@@ -8,11 +8,15 @@ export function Unauthenticated(props) {
     const [password, setPassword] = React.useState('');
 
     const login = () => {
-        authenticateCredentials('/api/auth/login');
+        if (username !== '' && password !== '') {
+            authenticateCredentials('/api/auth/login');
+        }
     };
 
     const create = () => {
-        authenticateCredentials('/api/auth/create');
+        if (username !== '' && password !== '') {
+            authenticateCredentials('/api/auth/create');
+        }    
     };
 
     async function authenticateCredentials(url) {

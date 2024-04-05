@@ -1,26 +1,25 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Button from 'react-bootstrap/Button';
-
 import './login.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { AuthState } from './authState';
 
 export function Authenticated(props) {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  function logout() {
-    fetch(`/api/auth/logout`, {
-      method: 'delete',
-    })
-      .catch(() => {
-        // Logout failed. Assuming offline
-      })
-      .finally(() => {
-        localStorage.removeItem('username');
-        props.onLogout();
-      });
-  }
+    function logout() {
+        fetch(`/api/auth/logout`, {
+            method: 'delete',
+        })
+        .catch(() => {
+            // Logout failed. Assuming offline
+        })
+        .finally(() => {
+            localStorage.removeItem('username');
+            props.onLogout('', AuthState.Unauthenticated);
+        });
+    }
 
   return (
     <div className="logged-in-box">
