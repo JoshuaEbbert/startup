@@ -67,7 +67,7 @@ ul.messages-list li.replies span {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
-    height: 9vh;
+    height: 7.5vh;
 }
 
 .input-container {
@@ -80,4 +80,9 @@ ul.messages-list li.replies span {
 
 .message-input {
     margin-right: 5px;
+    height: 5vh;
+}
+
+.btn {
+    height: 5vh;
 }

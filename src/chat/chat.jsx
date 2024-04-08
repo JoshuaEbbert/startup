@@ -37,10 +37,12 @@ export function Chat({ username, activeUsers, setActiveUsers }) {
 
     function submitMessage() {
         if (question) {
-            setQuestion(sanitizeInput(question));
-            updateTrending(question);
-    
-            const messageDict = {'type': 'sent', 'text': question};
+            const sanitizedQuestion = sanitizeInput(question);
+            setQuestion(''); // Clear the input
+
+            updateTrending(sanitizedQuestion);
+
+            const messageDict = {'type': 'sent', 'text': sanitizedQuestion};
             const chatHistory = getChatHistory();
             chatHistory.push(messageDict);
             const key = username.replace(/\s/g, '') + 'ChatHistory';
@@ -165,12 +167,13 @@ export function Chat({ username, activeUsers, setActiveUsers }) {
                 </ul>
             </div>
 
-            <div className="chat-box" id="chat-input" method="post">
-                <div className="input-container">
-                <input type="text" className="message-input mr-3" placeholder="Type message here" onChange={(e) => setQuestion(e.target.value)}/>
-                <button className="btn btn-primary ml-3" type="submit" value={question} onClick={() => submitMessage()}>Send</button>
-                </div>
-            </div>
+                <form className="chat-box" id="chat-input" onSubmit={(e) => { e.preventDefault(); submitMessage(); }}>
+                    <div className="input-container">
+                        <input type="text" className="message-input mr-3" placeholder="Type message here" value={question} onChange={(e) => setQuestion(e.target.value)} />
+                        <button className="btn btn-primary ml-3" type="submit">Send</button>
+                    </div>
+                </form>
+      
         </main>
     );
 }
