@@ -54,50 +54,40 @@ export function Chat({ username, activeUsers, setActiveUsers }) {
         setQuestion('');
     }
 
-    function getReply(message) {
-        let apiKey;
-        fetch('./service/config.json')
-            .then(response => response.json())
-            .then(data => {
-                apiKey = data.API_KEY;
-                const chatHistory = getChatHistory();
-                const promptText = constructPrompt(chatHistory, message);
-
-                const requestBody = {
-                    messages: [
-                        { role: "user", content: promptText }
-                    ],
-                    model: "gpt-3.5-turbo", // The model identifier
-                    max_tokens: 100, // Maximum number of tokens to generate
-                    temperature: 0.7, // Control randomness of the generated text (optional)
-                    stop: ["\n"] // Stop generation at the first newline character (optional)
-                };
-                
-                let text;
-                fetch("https://api.openai.com/v1/chat/completions", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${apiKey}`
-                    },
-                    body: JSON.stringify(requestBody)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    text = data.choices[0]['message']['content'].trim();
-                    console.log(text);
-                    const messageDict = {'type': 'replies', 'text': text};
-                    chatHistory.push(messageDict);
-                    const key = username.replace(/\s/g, '') + 'ChatHistory';
-                    localStorage.setItem(key, JSON.stringify(chatHistory));
-
-                    setChatMessages(chatHistory);
-                })
-                .catch(error => {
-                    console.error("Error:", error);
-                    text = "Error: Failed to generate a response. Please try again.";
-                });
+    async function getReply(message) {
+        try {
+            const chatHistory = getChatHistory();
+            const promptText = constructPrompt(chatHistory, message);
+    
+            const response = await fetch("/api/chat", {
+                method: 'post',
+                body: JSON.stringify({ promptText: promptText }),
+                headers: {
+                  'Content-type': 'application/json; charset=UTF-8',
+                },
             });
+
+            // Log the response text
+            let text = await response.text();
+            console.log(text);
+
+            const messageDict = {'type': 'replies', 'text': text};
+            chatHistory.push(messageDict);
+            const key = username.replace(/\s/g, '') + 'ChatHistory';
+            localStorage.setItem(key, JSON.stringify(chatHistory));
+    
+            setChatMessages(chatHistory);
+        } catch (error) {
+            console.error('Error:', error);
+
+            const chatHistory = getChatHistory();
+            let text = "Error: Failed to generate a response. Please try again.";
+            console.log(text);
+            const messageDict = {'type': 'replies', 'text': text};
+            chatHistory.push(messageDict);
+            const key = username.replace(/\s/g, '') + 'ChatHistory';
+            localStorage.setItem(key, JSON.stringify(chatHistory));
+        }
     }   
 
     async function updateTrending(question) {

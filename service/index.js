@@ -1,11 +1,24 @@
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const express = require('express');
+const fs = require('fs').promises;
 const app = express();
 const DB = require('./database.js');
 const { peerProxy } = require('./peerProxy.js');
 
 const authCookieName = 'token';
+
+let apiKey;
+
+// Load the API key from config.json when the server starts
+fs.readFile('/home/ubuntu/services/startup/config.json', 'utf-8')
+  .then(data => {
+    const config = JSON.parse(data);
+    apiKey = config.API_KEY;
+  })
+  .catch(err => {
+    console.error(err);
+  });
 
 // The service port. In production the frontend code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -69,6 +82,41 @@ secureApiRouter.use(async (req, res, next) => {
   } else {
     res.status(401).send({ msg: 'Unauthorized' });
   }
+});
+
+secureApiRouter.post('/chat', async (req, res) => {
+  // assumes req.body['promptText'] is the user's input
+  const requestBody = {
+      messages: [
+          { role: "user", content: req.body['promptText'] }
+      ],
+      model: "gpt-3.5-turbo", // The model identifier
+      max_tokens: 100, // Maximum number of tokens to generate
+      temperature: 0.7, // Control randomness of the generated text (optional)
+  };
+
+  response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${apiKey}`
+      },
+      body: JSON.stringify(requestBody)
+  });
+
+  // Log the response text
+  let responseText = await response.text();
+  console.log(responseText);
+
+  try {
+      data = JSON.parse(responseText);
+  } catch (error) {
+      console.error('Error parsing JSON:', error);
+  }
+  let text = data.choices[0]['message']['content'].trim();
+  console.log(text);
+
+  res.send(text);
 });
 
 // updateScores
