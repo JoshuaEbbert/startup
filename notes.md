@@ -1036,3 +1036,36 @@ sameSite will only return the cookie to the domain that generated it.
 ## React
 
 ![react program flow](image.png)
+
+## TypeScript
+
+```
+const containerEl = document.querySelector<HTMLElement>('#picture');
+if (containerEl) {
+  const width = containerEl.offsetWidth;
+}
+```
+
+Return type coerced to ```<HTMLElement>```
+
+With plain JavaScript you might create an enumerable with a class.
+
+```
+export class AuthState {
+  static Unknown = new AuthState('unknown');
+  static Authenticated = new AuthState('authenticated');
+  static Unauthenticated = new AuthState('unauthenticated');
+
+  constructor(name) {
+    this.name = name;
+  }
+}
+```
+
+With TypeScript you can define this by declaring a new type and defining what its possible values are.
+
+```
+type AuthState = 'unknown' | 'authenticated' | 'unauthenticated';
+
+let auth: AuthState = 'authenticated';
+```
